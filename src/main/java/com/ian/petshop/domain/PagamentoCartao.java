@@ -16,4 +16,12 @@ public class PagamentoCartao extends Pagamento {
     this.parcelas = parcelas;
   }
 
+  public Integer getParcelas() {
+    return parcelas;
+  }
+
+  public void setParcelas(Integer parcelas) {
+    this.parcelas = parcelas;
+  }
+
 }
