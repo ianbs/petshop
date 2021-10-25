@@ -1,11 +1,14 @@
 package com.ian.petshop.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Estado implements Serializable {
@@ -16,6 +19,9 @@ public class Estado implements Serializable {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
   private String nome;
+
+  @OneToMany(mappedBy = "estado")
+  private List<Cidade> cidades = new ArrayList<>();
 
   public Estado() {
 
@@ -66,6 +72,14 @@ public class Estado implements Serializable {
 
   public void setNome(String nome) {
     this.nome = nome;
+  }
+
+  public List<Cidade> getCidades() {
+    return cidades;
+  }
+
+  public void setCidades(List<Cidade> cidades) {
+    this.cidades = cidades;
   }
 
 }
