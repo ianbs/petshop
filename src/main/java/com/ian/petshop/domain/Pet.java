@@ -2,16 +2,29 @@ package com.ian.petshop.domain;
 
 import java.io.Serializable;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+@Entity
 public class Pet implements Serializable {
 
   public static final long serialVersionUID = 1L;
 
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
   private String nome;
   private Integer idade;
 
+  @ManyToOne
+  @JoinColumn(name = "id_especie")
   private Especie especie;
-
+  @ManyToOne
+  @JoinColumn(name = "id_raca")
   private Raca raca;
 
   public Pet() {
