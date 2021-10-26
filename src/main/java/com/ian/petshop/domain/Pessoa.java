@@ -6,17 +6,35 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CollectionTable;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Pessoa implements Serializable {
 
   public static final long serialVersionUID = 1L;
 
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
   private String nome;
   private String email;
   private String codNacional;
 
+  @OneToMany(mappedBy = "pessoa")
   private List<Endereco> enderecos = new ArrayList<>();
 
+  @ElementCollection
+  @CollectionTable(name = "TELEFONE", joinColumns = @JoinColumn(name = "id_pessoa"))
   private Set<String> telefones = new HashSet<>();
 
   public Pessoa() {

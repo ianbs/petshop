@@ -1,5 +1,8 @@
 package com.ian.petshop.domain;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Cliente extends Pessoa {
   public static final long serialVersionUID = 1L;
 
