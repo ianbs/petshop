@@ -3,11 +3,12 @@ package com.ian.petshop.domain;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.MapsId;
+import javax.persistence.OneToOne;
 
 import com.ian.petshop.domain.enuns.SituacaoPagamento;
 
@@ -20,16 +21,23 @@ public class Pagamento implements Serializable {
   @Id
   private Integer id;
   private Double valor;
+
   private SituacaoPagamento situacao;
+
+  @OneToOne
+  @JoinColumn(name = "id_servico")
+  @MapsId
+  private Servico servico;
 
   public Pagamento() {
   }
 
-  public Pagamento(Integer id, Double valor, SituacaoPagamento situacao) {
+  public Pagamento(Integer id, Double valor, SituacaoPagamento situacao, Servico servico) {
     super();
     this.id = id;
     this.setValor(valor);
     this.setSituacao(situacao);
+    this.setServico(servico);
   }
 
   @Override
@@ -79,6 +87,14 @@ public class Pagamento implements Serializable {
 
   public void setSituacao(SituacaoPagamento situacao) {
     this.situacao = situacao;
+  }
+
+  public Servico getServico() {
+    return servico;
+  }
+
+  public void setServico(Servico servico) {
+    this.servico = servico;
   }
 
 }

@@ -17,8 +17,9 @@ public class PagamentoDinheiro extends Pagamento {
   public PagamentoDinheiro() {
   }
 
-  public PagamentoDinheiro(Integer id, Double valor, SituacaoPagamento situacao, Date dataPagamento, Double desconto) {
-    super(id, valor, situacao);
+  public PagamentoDinheiro(Integer id, Double valor, SituacaoPagamento situacao, Servico servico, Date dataPagamento,
+      Double desconto) {
+    super(id, valor, situacao, servico);
     this.dataPagamento = dataPagamento;
     this.desconto = desconto;
   }
