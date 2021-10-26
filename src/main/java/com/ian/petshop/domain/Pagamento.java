@@ -14,7 +14,7 @@ import com.ian.petshop.domain.enuns.SituacaoPagamento;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public class Pagamento implements Serializable {
+public abstract class Pagamento implements Serializable {
 
   public static final long serialVersionUID = 1L;
 
@@ -22,7 +22,7 @@ public class Pagamento implements Serializable {
   private Integer id;
   private Double valor;
 
-  private SituacaoPagamento situacao;
+  private Integer situacao;
 
   @OneToOne
   @JoinColumn(name = "id_servico")
@@ -36,7 +36,7 @@ public class Pagamento implements Serializable {
     super();
     this.id = id;
     this.setValor(valor);
-    this.setSituacao(situacao);
+    this.situacao = situacao.getCodigo();
     this.setServico(servico);
   }
 
@@ -81,11 +81,11 @@ public class Pagamento implements Serializable {
     this.valor = valor;
   }
 
-  public SituacaoPagamento getSituacao() {
+  public Integer getSituacao() {
     return situacao;
   }
 
-  public void setSituacao(SituacaoPagamento situacao) {
+  public void setSituacao(Integer situacao) {
     this.situacao = situacao;
   }
 
