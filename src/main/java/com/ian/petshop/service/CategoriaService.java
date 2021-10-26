@@ -13,10 +13,10 @@ import org.springframework.stereotype.Service;
 public class CategoriaService {
 
   @Autowired
-  private CategoriaRepository repo;
+  private CategoriaRepository repository;
 
   public Categoria findCategoria(Integer id) {
-    Optional<Categoria> obj = repo.findById(id);
+    Optional<Categoria> obj = repository.findById(id);
     return obj.orElseThrow(() -> new ObjetoNaoEncontradoException(
         "Objeto não encontrado. ID: " + id + ", Tipo: " + Categoria.class.getName()));
   }
