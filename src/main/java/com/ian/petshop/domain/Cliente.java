@@ -6,12 +6,15 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Cliente extends Pessoa {
   public static final long serialVersionUID = 1L;
 
   private String tipo;
 
+  @JsonIgnore
   @OneToMany(mappedBy = "cliente")
   List<Servico> servicos = new ArrayList<>();
 

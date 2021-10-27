@@ -41,11 +41,11 @@ public class Servico implements Serializable {
   @JoinColumn(name = "id_funcionario")
   private Funcionario funcionario;
 
+  @JsonIgnore
   @ManyToOne
   @JoinColumn(name = "id_pet")
   private Pet pet;
 
-  @JsonIgnore
   @ManyToMany
   @JoinTable(name = "SERVICO_PRODUTO", joinColumns = @JoinColumn(name = "id_servico"), inverseJoinColumns = @JoinColumn(name = "id_produto"))
   private List<Produto> produtos = new ArrayList<>();
