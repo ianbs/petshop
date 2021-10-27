@@ -35,7 +35,23 @@ public class Servico implements Serializable {
   @JoinColumn(name = "id_funcionario")
   private Funcionario funcionario;
 
+  @ManyToOne
+  @JoinColumn(name = "id_pet")
+  private Pet pet;
+
   public Servico() {
+  }
+
+  public Servico(Integer id, Date dataEntrada, Date dataSaida, String descricao, Pagamento pagamento, Cliente cliente,
+      Funcionario funcionario, Pet pet) {
+    this.id = id;
+    this.dataEntrada = dataEntrada;
+    this.dataSaida = dataSaida;
+    this.descricao = descricao;
+    this.pagamento = pagamento;
+    this.cliente = cliente;
+    this.funcionario = funcionario;
+    this.pet = pet;
   }
 
   public Servico(Integer id, Date dataEntrada, Date dataSaida, String descricao, Cliente cliente,
@@ -44,7 +60,6 @@ public class Servico implements Serializable {
     this.dataEntrada = dataEntrada;
     this.dataSaida = dataSaida;
     this.descricao = descricao;
-    // this.pagamento = pagamento;
     this.cliente = cliente;
     this.funcionario = funcionario;
   }
@@ -128,6 +143,14 @@ public class Servico implements Serializable {
 
   public void setCliente(Cliente cliente) {
     this.cliente = cliente;
+  }
+
+  public Pet getPet() {
+    return pet;
+  }
+
+  public void setPet(Pet pet) {
+    this.pet = pet;
   }
 
 }
