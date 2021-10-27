@@ -30,6 +30,9 @@ public class Produto implements Serializable {
   @JoinTable(name = "PRODUTO_CATEGORIA", joinColumns = @JoinColumn(name = "id_produto"), inverseJoinColumns = @JoinColumn(name = "id_categoria"))
   private List<Categoria> categorias = new ArrayList<>();
 
+  @ManyToMany(mappedBy = "produtos")
+  private List<Servico> servicos = new ArrayList<>();
+
   public Produto() {
   }
 
@@ -95,6 +98,14 @@ public class Produto implements Serializable {
     } else if (!id.equals(other.id))
       return false;
     return true;
+  }
+
+  public List<Servico> getServicos() {
+    return servicos;
+  }
+
+  public void setServicos(List<Servico> servicos) {
+    this.servicos = servicos;
   }
 
 }
