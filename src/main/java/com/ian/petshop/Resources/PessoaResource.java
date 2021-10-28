@@ -11,8 +11,10 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.ian.petshop.domain.Pessoa;
+import com.ian.petshop.dtos.PessoaDTO;
 import com.ian.petshop.service.PessoaService;
 
 @RestController
@@ -49,9 +51,10 @@ public class PessoaResource {
   }
 
   @RequestMapping(method = RequestMethod.GET)
-  public ResponseEntity<List<Pessoa>> findAllPessoas() {
+  public ResponseEntity<List<PessoaDTO>> findAllPessoas() {
     List<Pessoa> objPessoa = service.findAllPessoa();
-    return ResponseEntity.ok().body(objPessoa);
+    List<PessoaDTO> pessoaDTOs = objPessoa.stream().map((obj) -> new PessoaDTO(obj)).collect(Collectors.toList());
+    return ResponseEntity.ok().body(pessoaDTOs);
   }
 
 }
