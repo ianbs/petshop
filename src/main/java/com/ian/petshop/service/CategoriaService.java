@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import com.ian.petshop.domain.Categoria;
 import com.ian.petshop.repository.CategoriaRepository;
+import com.ian.petshop.service.exceptions.DataIntegrityException;
 import com.ian.petshop.service.exceptions.ObjetoNaoEncontradoException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +38,7 @@ public class CategoriaService {
     try {
       repository.deleteById(id);
     } catch (DataIntegrityViolationException e) {
-      throw new DataIntegrityViolationException("Categoria possui produtos. Não é possivel excluir.");
+      throw new DataIntegrityException("Categoria possui produtos. Não é possivel excluir.");
     }
   }
 
