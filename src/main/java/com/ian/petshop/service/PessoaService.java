@@ -1,5 +1,6 @@
 package com.ian.petshop.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import com.ian.petshop.domain.Pessoa;
@@ -40,6 +41,11 @@ public class PessoaService {
     } catch (DataIntegrityViolationException e) {
       throw new DataIntegrityException("Não é possivel excluir.");
     }
+  }
+
+  public List<Pessoa> findAllPessoa() {
+    List<Pessoa> obj = repository.findAll();
+    return obj;
   }
 
 }

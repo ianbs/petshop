@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 
 import com.ian.petshop.domain.Pessoa;
 import com.ian.petshop.service.PessoaService;
@@ -45,6 +46,12 @@ public class PessoaResource {
   public ResponseEntity<Void> deletePessoas(@PathVariable Integer id) {
     service.deletePessoa(id);
     return ResponseEntity.noContent().build();
+  }
+
+  @RequestMapping(method = RequestMethod.GET)
+  public ResponseEntity<List<Pessoa>> findAllPessoas() {
+    List<Pessoa> objPessoa = service.findAllPessoa();
+    return ResponseEntity.ok().body(objPessoa);
   }
 
 }
