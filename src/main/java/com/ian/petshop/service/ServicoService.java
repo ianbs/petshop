@@ -1,5 +1,6 @@
 package com.ian.petshop.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import com.ian.petshop.domain.Servico;
@@ -41,4 +42,8 @@ public class ServicoService {
     }
   }
 
+  public List<Servico> findAllServicos() {
+    List<Servico> obj = servicoRepository.findAll();
+    return obj;
+  }
 }

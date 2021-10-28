@@ -1,8 +1,11 @@
 package com.ian.petshop.resources;
 
 import java.net.URI;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import com.ian.petshop.domain.Servico;
+import com.ian.petshop.dtos.ServicoDTO;
 import com.ian.petshop.service.ServicoService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,5 +48,12 @@ public class ServicoResource {
   public ResponseEntity<Void> deleteServicos(@PathVariable Integer id) {
     service.deleteServico(id);
     return ResponseEntity.noContent().build();
+  }
+
+  @RequestMapping(method = RequestMethod.GET)
+  public ResponseEntity<List<ServicoDTO>> findAllPessoas() {
+    List<Servico> objServicos = service.findAllServicos();
+    List<ServicoDTO> servicoDTOs = objServicos.stream().map((obj) -> new ServicoDTO(obj)).collect(Collectors.toList());
+    return ResponseEntity.ok().body(servicoDTOs);
   }
 }
