@@ -7,6 +7,7 @@ import com.ian.petshop.repository.CategoriaRepository;
 import com.ian.petshop.service.exceptions.ObjetoNaoEncontradoException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -21,14 +22,23 @@ public class CategoriaService {
         "Objeto não encontrado. ID: " + id + ", Tipo: " + Categoria.class.getName()));
   }
 
-  public Categoria insertCartegoria(Categoria categoria) {
+  public Categoria insertCategoria(Categoria categoria) {
     categoria.setId(null);
     return repository.save(categoria);
   }
 
-  public Categoria updateCartegoria(Categoria categoria) {
+  public Categoria updateCategoria(Categoria categoria) {
     findCategoria(categoria.getId());
     return repository.save(categoria);
+  }
+
+  public void deleteCategoria(Integer id) {
+    findCategoria(id);
+    try {
+      repository.deleteById(id);
+    } catch (DataIntegrityViolationException e) {
+      throw new DataIntegrityViolationException("Categoria possui produtos. Não é possivel excluir.");
+    }
   }
 
 }
