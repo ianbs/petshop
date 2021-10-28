@@ -10,8 +10,11 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import com.ian.petshop.domain.Categoria;
+import com.ian.petshop.dtos.CategoriaDTO;
 import com.ian.petshop.service.CategoriaService;
 
 @RestController
@@ -46,6 +49,14 @@ public class CategoriaResource {
   public ResponseEntity<Void> deleteCategorias(@PathVariable Integer id) {
     service.deleteCategoria(id);
     return ResponseEntity.noContent().build();
+  }
+
+  @RequestMapping(method = RequestMethod.GET)
+  public ResponseEntity<List<CategoriaDTO>> findAllPessoas() {
+    List<Categoria> objCategorias = service.findAllCategorias();
+    List<CategoriaDTO> categoriaDTOs = objCategorias.stream().map((obj) -> new CategoriaDTO(obj))
+        .collect(Collectors.toList());
+    return ResponseEntity.ok().body(categoriaDTOs);
   }
 
 }

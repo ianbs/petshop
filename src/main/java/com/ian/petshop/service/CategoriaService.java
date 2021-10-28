@@ -1,5 +1,6 @@
 package com.ian.petshop.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import com.ian.petshop.domain.Categoria;
@@ -40,6 +41,11 @@ public class CategoriaService {
     } catch (DataIntegrityViolationException e) {
       throw new DataIntegrityException("Categoria possui produtos. Não é possivel excluir.");
     }
+  }
+
+  public List<Categoria> findAllCategorias() {
+    List<Categoria> obj = repository.findAll();
+    return obj;
   }
 
 }
