@@ -4,7 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 
-import javax.annotation.PostConstruct;
+// import javax.annotation.PostConstruct;
 
 import com.ian.petshop.domain.Categoria;
 import com.ian.petshop.domain.Cidade;
@@ -61,7 +61,7 @@ public class PopulaDados {
         @Autowired
         PagamentoRepository pagamentoRepository;
 
-        @PostConstruct
+        // @PostConstruct
         public void cadrastro() throws ParseException {
                 Categoria cat1 = new Categoria(null, "Alimento");
                 Categoria cat2 = new Categoria(null, "Remédio");
